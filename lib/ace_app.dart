@@ -7,8 +7,8 @@ class AceApplication extends StatelessWidget {
     return MaterialApp(
       title: "Ace Mobile",
       debugShowCheckedModeBanner: false,
-      darkTheme: ThemeData(primarySwatch: Colors.deepPurple),
-      theme: ThemeData(primarySwatch: Colors.purple),
+      themeMode: ThemeMode.dark,
+      darkTheme: ThemeData.dark(),
       home: Home(),
     );
   }
