@@ -53,23 +53,33 @@ class _HomeState extends State<Home> {
   }
 
   getDevices() {
-    Uri url = Uri.parse(
-        widget.apiUrl + "/api/organizations/${widget.organizationId}/devices");
-    Future<http.Response> response = http.get(url);
-    response.then((res) {
-      List<dynamic> body = json.decode(res.body);
-      List<Device> devicesMap = body
-          .map((dev) => Device(
-              id: dev["id"],
-              name: dev["name"],
-              enabled: dev["enabled"],
-              type: dev['type'],
-              healthStatus: dev['healthStatus']))
-          .toList();
-      setState(() {
-        devices = devicesMap;
+    try {
+      Uri url = Uri.parse(
+          widget.apiUrl + "/api/organizations/${widget.organizationId}/devices");
+      Future<http.Response> response = http.get(url);
+      response.then((res) {
+        List<dynamic> body = json.decode(res.body);
+        List<Device> devicesMap = body
+            .map((dev) => Device(
+                id: dev["id"],
+                name: dev["name"],
+                enabled: dev["enabled"],
+                type: dev['type'],
+                healthStatus: dev['healthStatus']))
+            .toList();
+        setState(() {
+          devices = devicesMap;
+        });
       });
-    });
+    }
+    on FormatException catch (e) {
+      ScaffoldMessenger.of(context).showSnackBar(
+        new SnackBar(content: Text("Please update to the latest version of the app"))
+      );
+    } 
+    on Exception catch (e) {
+      print(e);
+    }
   }
 
   void handleSocketConnection(StompFrame frame) {
