@@ -78,8 +78,8 @@ class _DeviceCardState extends State<DeviceCard> {
         border: Border.all(color: Colors.white),
         borderRadius: BorderRadius.all(Radius.circular(8.0)),
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: 16.0, horizontal: 8.0),
+      child: Container(
+        padding: const EdgeInsets.only(left: 8.0, bottom: 8),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -98,6 +98,7 @@ class _DeviceCardState extends State<DeviceCard> {
                   children: [
                     Text("Offline"),
                     IconButton(
+                      visualDensity: VisualDensity.compact,
                       iconSize: 16,
                       splashRadius: 16,
                       icon: Icon(widget.device.enabled
