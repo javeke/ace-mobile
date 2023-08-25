@@ -68,7 +68,7 @@ class _HomeState extends State<Home> {
   @override
   void setState(void Function() func) {
     if(!mounted) return;
-    setState(func);
+    super.setState(func);
   }
 
   getDevices() {
