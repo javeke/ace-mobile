@@ -13,7 +13,7 @@ class Device {
     this.healthStatus,
     this.type,
   });
-
+  
   Map<String, dynamic> toMap() => {
         "id": id,
         "name": name,
@@ -22,6 +22,7 @@ class Device {
         "type": type,
       };
 
+  @override
   String toString() =>
       "{ id: $id, name: $name, enabled: $enabled, " +
       "healthStatus: $healthStatus, type: $type }";
@@ -44,6 +45,7 @@ class DeviceData {
         "createdAt": createdAt.toString(),
       };
 
+  @override
   String toString() =>
       "{ paramValue: $paramValue, paramName: $paramName, " +
       "createdAt: ${createdAt.toString()} }";
@@ -63,6 +65,7 @@ class SocketDataMessage {
         "data": data.toMap(),
       };
 
+  @override
   String toString() => "{ message: $message, data: ${data.toString()} }";
 }
 
@@ -80,6 +83,7 @@ class SocketControlMessage {
         "message": message.toString().split(".").last
       };
 
+  @override
   String toString() =>
       "{ message: ${message.toString().split(".").last}, control: ${control.toString()} }";
 }
