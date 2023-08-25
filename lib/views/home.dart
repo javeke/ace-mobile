@@ -45,6 +45,13 @@ class _HomeState extends State<Home> {
     }
   }
 
+  // safe setState
+  @override
+  void setState(void Function() func) {
+    if(!mounted) return;
+    setState(func);
+  }
+
   getDevices() {
     Uri url = Uri.parse(
         widget.apiUrl + "/api/organizations/${widget.organizationId}/devices");
